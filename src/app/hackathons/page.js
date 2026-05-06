@@ -35,8 +35,18 @@ export default function HackathonsPage() {
       <section className="section">
         <div className="container">
           <FilterTabs tabs={hackathonFilters} activeTab={activeFilter} onChange={setActiveFilter} />
-          <div className={styles.grid}>
-            {filtered.map((h) => <HackathonCard key={h.id} hackathon={h} />)}
+          <div className={styles.gridWrapper}>
+            {activeFilter === 'All' && searchQuery === '' && (
+              <div className={styles.indicatorContainer}>
+                <div className={styles.arrowIndicator}>
+                  <span className={styles.arrowGlow}></span>
+                  <span className={styles.arrowIcon}></span>FEATURED
+                </div>
+              </div>
+            )}
+            <div className={styles.grid}>
+              {filtered.map((h) => <HackathonCard key={h.id} hackathon={h} />)}
+            </div>
           </div>
           {filtered.length === 0 && <p className={styles.empty}>No hackathons found matching your criteria. Try a different filter or search term.</p>}
         </div>
