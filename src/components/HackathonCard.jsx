@@ -87,7 +87,7 @@ export default function HackathonCard({ hackathon }) {
         {/* CTA */}
         <div className={styles.cta}>
           <span className={`btn btn-primary btn-sm ${styles.registerBtn}`}>
-            {hackathon.status === 'ENDED' || hackathon.status === 'COMPLETED' ? 'View Results' : 'Open Now →'}
+            {hackathon.ctaText ? hackathon.ctaText : (hackathon.status === 'ENDED' || hackathon.status === 'COMPLETED' ? 'View Results' : 'Open Now →')}
           </span>
         </div>
       </div>
