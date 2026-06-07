@@ -20,11 +20,7 @@ export default function ContactPage() {
 
   const handleSubmit = async (e) => {
   e.preventDefault();
-  const { createClient } = await import('@supabase/supabase-js');
-  const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL,
-    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
-  );
+  const { supabase } = await import('@/lib/supabase');
   await supabase.from('contact_submissions').insert([{
     name: formData.name,
     email: formData.email,
