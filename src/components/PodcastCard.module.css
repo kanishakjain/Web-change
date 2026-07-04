@@ -6,6 +6,8 @@
   overflow: hidden;
   transition: all var(--transition-base);
   scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
 }
 
 .card:hover {
@@ -15,17 +17,22 @@
 }
 
 .thumbnail {
-  position: relative;
   width: 100%;
   height: 180px;
+  flex-shrink: 0;
   overflow: hidden;
+  border-bottom: 1px solid var(--border-subtle);
 }
 
 .thumbnailImg {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
+  transition: transform var(--transition-slow);
 }
+
+.card:hover .thumbnailImg { transform: scale(1.05); }
 
 .thumbnailPlaceholder {
   width: 100%;
@@ -36,46 +43,14 @@
   justify-content: center;
 }
 
-.placeholderIcon { font-size: 48px; opacity: 0.5; }
-
-.episodeTag {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  background: var(--gradient-primary);
-  color: white;
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  padding: 4px 10px;
-  border-radius: 999px;
-}
-
-.ytBtn {
-  position: absolute;
-  bottom: 12px;
-  right: 12px;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: #FF0000;
-  color: white;
-  font-size: 12px;
-  font-weight: 600;
-  padding: 6px 12px;
-  border-radius: 999px;
-  text-decoration: none;
-  transition: opacity 0.2s, transform 0.2s;
-}
-
-.ytBtn:hover { opacity: 0.9; transform: scale(1.05); }
+.placeholderIcon { font-size: 48px; opacity: 0.4; }
 
 .body {
   padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 12px;
+  flex: 1;
 }
 
 .guest {
@@ -84,18 +59,21 @@
   gap: 10px;
 }
 
-.guestAvatar {
-  width: 36px;
-  height: 36px;
+.episodePill {
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background: var(--gradient-primary);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 700;
-  font-size: 14px;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 10px;
   color: white;
   flex-shrink: 0;
+  text-align: center;
+  line-height: 1.2;
 }
 
 .guestName {
@@ -115,6 +93,7 @@
   font-size: 15px;
   color: var(--text-primary);
   line-height: 1.4;
+  flex: 1;
 }
 
 .summary {
@@ -126,3 +105,22 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+.ytBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px;
+  background: #FF0000;
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: opacity 0.2s, transform 0.2s;
+  margin-top: auto;
+}
+
+.ytBtn:hover { opacity: 0.9; transform: translateY(-1px); }
