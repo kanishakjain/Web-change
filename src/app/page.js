@@ -45,6 +45,20 @@ export default function Home() {
     }
   };
 
+  const podcastScrollRef = useRef(null);
+
+  const scrollPodcastLeft = () => {
+  if (podcastScrollRef.current) {
+    podcastScrollRef.current.scrollBy({ left: -350, behavior: 'smooth' });
+  }
+};
+
+const scrollPodcastRight = () => {
+  if (podcastScrollRef.current) {
+    podcastScrollRef.current.scrollBy({ left: 350, behavior: 'smooth' });
+  }
+};
+  
   const howItWorks = [
     { icon: <UserPlus size={28} />, title: 'Create Profile', desc: 'Sign up and build your hacker profile' },
     { icon: <Search size={28} />, title: 'Discover Hackathons', desc: 'Browse and filter from 500+ events' },
@@ -203,10 +217,23 @@ export default function Home() {
         <section className={`section ${styles.howSection}`}>
           <div className="container">
             <SectionHeading label="Podcast" title="Industry Insider" subtitle="Real conversations with builders, founders and industry leaders" />
-            <div className={styles.podcastScroll}>
-              {podcasts.map((p) => (
-                <PodcastCard key={p.id} podcast={p} />
-              ))}
+            <div className={styles.hackathonCarouselWrapper}>
+              <button className={`${styles.carouselBtn} ${styles.prevBtn}`} onClick={scrollPodcastLeft} aria-label="Previous episodes">
+                <ChevronLeft size={24} />
+              </button>
+              <div className={styles.podcastScroll} ref={podcastScrollRef}>
+                {podcasts.map((p) => (
+                  <PodcastCard key={p.id} podcast={p} />
+                ))}
+              </div>
+              <button className={`${styles.carouselBtn} ${styles.nextBtn}`} onClick={scrollPodcastRight} aria-label="Next episodes">
+                <ChevronRight size={24} />
+              </button>
+            </div>
+            <div className={styles.viewAll}>
+              <a href="https://www.youtube.com/@hackerunity" target="_blank" rel="noopener noreferrer" className="btn btn-ghost">
+                View All Episodes <ChevronRight size={16} />
+              </a>
             </div>
           </div>
         </section>
