@@ -345,13 +345,18 @@
   display: flex;
   gap: var(--space-6);
   overflow-x: auto;
+  scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
   padding-bottom: var(--space-4);
   scrollbar-width: none;
-  margin-top: var(--space-8);
 }
 
 .podcastScroll::-webkit-scrollbar { display: none; }
+
+.podcastScroll > * {
+  flex: 0 0 320px;
+  scroll-snap-align: start;
+}
 
 /* ━━ EVENTS SCROLL ━━ */
 .eventsScroll {
